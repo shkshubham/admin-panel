@@ -1,0 +1,13 @@
+form input {
+  display: block;
+  flex: 1 1 auto;
+  padding: .375rem .75rem;
+  font-size: .875rem;
+  line-height: 1.5;
+  color: #5c6873;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #e4e7ea;
+  border-radius: 0 .25rem .25rem 0; }
+
+/*# sourceMappingURL=login.css.map */

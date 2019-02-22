@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,oBAAoB;EAChB,UAAU,EAAE,IAAI;;AAEpB,WAAW;EACP,YAAY,EAAE,IAAI",
+"sources": ["DefultLayout.scss"],
+"names": [],
+"file": "DefultLayout.css"
+}
