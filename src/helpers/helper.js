@@ -26,3 +26,8 @@ export function parseDateAndTime(date_time, type){
     }
     return moment(date_time).format(format)
 }
+
+export function CapitalFirstLetter(string) 
+{
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}

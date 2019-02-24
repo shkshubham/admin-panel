@@ -7,15 +7,12 @@ import {
 } from '../../actions/actions';
 import List from '../Include/CRUD/list';
 
-class Dish extends Component {
+class ListDish extends Component {
     constructor(props){
         super(props);
         this.state = {
-            tableHeader: [],
             title: "",
-            isShow: false,
             tableData: null,
-            type: ""
         }
     }
     componentWillMount(){
@@ -24,20 +21,21 @@ class Dish extends Component {
     componentWillReceiveProps(nextProps){
         // if(nextProps.dishes && nextProps.dishes !== this.props.dishes){
             this.setState({
-                title: `Dishes`,
+                title: `Dish`,
                 // tableData: nextProps.dish,
                 tableData: [
                     {
                         id: 1,
                         name: "Biryani",
-                        price: 25
+                        price: 25,
+                        quantity: 20
                     }
                 ],
             })
         // }
     }
     render() {
-        const { tableHeader, title, tableData, type } = this.state;
+        const { title, tableData, type } = this.state;
         return (
             <div className="animated fadeIn">
                     {
@@ -70,4 +68,4 @@ function mapDispatchToProps(dispatch) {
   }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Dish);
+export default connect(mapStateToProps, mapDispatchToProps)(ListDish);

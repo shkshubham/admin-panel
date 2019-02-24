@@ -4,7 +4,10 @@ import { loginAPI, pingAPI,
 import { LOGIN, PING, LOGOUT, CLEAR_LOGIN
 } from './types';
 export function loginAction(userData) {
-    const payload = loginAPI(userData);
+    // const payload = loginAPI(userData);
+    const payload = {
+        data: "success"
+    }
     return {
         type: LOGIN,
         payload

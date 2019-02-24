@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Card, CardBody, Col, Row, CardHeader, Table } from 'reactstrap';
+import { Link } from 'react-router-dom'; 
 class List extends Component {
     constructor(props){
         super(props);
@@ -72,7 +73,7 @@ class List extends Component {
             <Col>
                 <div className="create-header">
                     <Col xs={2}>
-                            <button class="btn btn-primary btn-block">Create {title}</button>
+                            <Link to={`/${title.toLowerCase()}/create`} class="btn btn-primary btn-block">Create {title}</Link>
                     </Col>
                 </div>
             </Col>

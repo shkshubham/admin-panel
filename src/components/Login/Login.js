@@ -39,6 +39,21 @@ class Login extends Component {
       toast.error("Invalid details")
     }
   }
+  // renderLoginField = () => {
+  //   return ["username", "password"].map(data => {
+  //     return (
+  //       <Field 
+  //           className="mb-3"
+  //           name={data} 
+  //           label={data}
+  //           icon="icon-user"
+  //           component={renderFields} 
+  //           type="text" 
+  //           placeholder={data} 
+  //       />
+  //     )
+  //   })
+  // }
   render() {
     console.log(this.props.user)
     const { handleSubmit, pristine, submitting } = this.props;
@@ -53,6 +68,9 @@ class Login extends Component {
                     <form onSubmit={handleSubmit(this.onLoginSubmit.bind(this))}>
                       <h1>Login</h1>
                       <p className="text-muted">Sign In to your account</p>
+                      {/* {
+                        this.renderLoginField()
+                      } */}
                       <Field 
                           className="mb-3"
                           name="username" 

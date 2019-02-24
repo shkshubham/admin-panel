@@ -12,18 +12,11 @@ export default {
       name: 'Dish',
       url: '/dish',
       icon: 'icon-food',
-      children: [
-        {
-          name: 'List Dish',
-          url: '/dish/list',
-          icon: 'icon-list'
-        },
-        {
-          name: 'Create Show',
-          url: '/dish/create',
-          icon: 'icon-plus'
-        }
-      ]
+    },
+    {
+      name: 'Cuisine',
+      url: '/cuisine',
+      icon: 'icon-food',
     }
   ],
 };
