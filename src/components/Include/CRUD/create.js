@@ -31,6 +31,7 @@ class Create extends Component {
             const caps = CapitalFirstLetter(field).split("_").join(" ")
             return (
                 <Field 
+                    key={`field_${field}`}
                     className="mb-3 col-4"
                     name={caps} 
                     label={field}
@@ -55,7 +56,8 @@ class Create extends Component {
 
     render() {
         const {
-            title
+            title,
+            handleSubmit
         } = this.props;
         return (
         <div className="create-section flex-row align-items-center">
@@ -65,7 +67,7 @@ class Create extends Component {
                 <CardGroup>
                     <Card className="p-4">
                     <CardBody>
-                        <form onSubmit={this.props.onSubmit}>
+                        <form onSubmit={handleSubmit(this.props.onSubmit.bind(this))} >
                         <h1>{title}</h1>
                         {
                             this.renderAllField()

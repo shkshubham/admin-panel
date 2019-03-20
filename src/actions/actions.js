@@ -4,15 +4,11 @@ import {
     logoutAction,
     clearLoginAction
 } from './AuthAction';
-
-import {
-    listDishAction, showDishAction
-} from './DishAction';
-
+import CRUDAction from './commonAction';
+import { DISH_TYPES } from './types';
 export const loginAdmin = loginAction;
 export const getPing = pingAction;
 export const logoutAdmin = logoutAction;
 export const clearLogin = clearLoginAction;
 
-export const listDish = listDishAction;
-export const showDish = showDishAction;
+export const dishActions = new CRUDAction("dish", DISH_TYPES);

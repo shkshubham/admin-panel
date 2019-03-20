@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { Row, Col } from 'reactstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
-  listDish, showDish
+  dishActions
 } from '../../actions/actions';
 import List from '../Include/CRUD/list';
-
+console.log("================================---------------", dishActions)
 class ListDish extends Component {
     constructor(props){
         super(props);
@@ -16,7 +15,7 @@ class ListDish extends Component {
         }
     }
     componentWillMount(){
-        this.props.listDish()
+        this.props.listDish();
     }
     componentWillReceiveProps(nextProps){
         // if(nextProps.dishes && nextProps.dishes !== this.props.dishes){
@@ -63,8 +62,7 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    listDish,
-    showDish
+    listDish: dishActions.listAction,
   }, dispatch)
 }
 
