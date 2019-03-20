@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Card, CardBody, Col, Row, CardHeader, Table, Input } from 'reactstrap';
 import { Link } from 'react-router-dom'; 
+import { createTableHeader } from '../../Utility/helpers';
 class List extends Component {
     constructor(props){
         super(props);
@@ -8,7 +9,7 @@ class List extends Component {
             keys: [],
             deletedIds: [],
             searchItem: null,
-            selectedOption: "id"
+            selectedOption: ""
         }
     }
 
@@ -19,7 +20,8 @@ class List extends Component {
         if(tableData.length > 0){
             const keys = Object.keys(tableData[0]);
             this.setState({
-                keys
+                keys,
+                selectedOption: keys[0]
             })
         }
     }
@@ -29,7 +31,7 @@ class List extends Component {
             keys
         } = this.state
         return keys.map((option, index)=> {
-            return <option key={`${index}_${option}_select`}>{option}</option>
+            return <option value={option} key={`${index}_${option}_select`}>{createTableHeader(option)}</option>
         })
     }
     
@@ -38,7 +40,7 @@ class List extends Component {
             keys
         } = this.state
         return keys.map((header, index)=> {
-            return <th key={`${index}_${header}`}>{header}</th>
+            return <th key={`${index}_${header}`}>{createTableHeader(header)}</th>
         })
     }
 
@@ -54,10 +56,10 @@ class List extends Component {
         const isDelete = window.confirm(`Do you want to delete ${id}`);
         if(isDelete){
             alert("Deleted");
+            this.setState({
+                deletedIds: [...this.state.deletedIds, id]
+            });
         }
-        this.setState({
-            deletedIds: [...this.state.deletedIds, id]
-        });
     }
     renderItem = (data) => {
         return (

@@ -43,11 +43,30 @@ class Create extends Component {
         })
     }
 
+    // renderSelectFields = () => {
+    //     return fields.map(field => {
+    //         const caps = CapitalFirstLetter(field).split("_").join(" ")
+    //         return (
+    //             <Field 
+    //                 key={`field_${field}`}
+    //                 className="mb-3 col-4"
+    //                 name={caps} 
+    //                 label={field}
+    //                 component={this.renderFields} 
+    //                 type={type} 
+    //                 placeholder={`Enter ${caps}`} 
+    //             />
+    //         )
+    //     })
+    // }
+
     renderAllField = () => {
         return this.props.fields.map(({ type, fields }) => {
             switch (type) {
                 case "text":
                     return this.renderTextFields(type, fields)
+                case "select":
+                    return this.renderSelectFields(type, fields)
                 default:
                     break;
             }

@@ -13,9 +13,18 @@ class CreateDish extends Component {
                 {
                     type : "text",
                     fields: [
-                        "id", "dish_name", "classify_id", "logo", "menu_type", "category_type", "description"
+                        "dish_name", "classify_id", "logo", "menu_type", 
+                        "category_type", "description", "restrictions",
                     ]
-                }
+                },
+                // {
+                //     type: "select",
+                //     fields: [{
+                //         "name":"South Indian"
+                //     },{
+                //         "name":"North Indian"
+                //     }]
+                // }
             ]
         }
     }

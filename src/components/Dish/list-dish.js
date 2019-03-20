@@ -24,10 +24,18 @@ class ListDish extends Component {
                 // tableData: nextProps.dish,
                 tableData: [
                     {
-                        id: 1,
-                        name: "Biryani",
-                        price: 25,
-                        quantity: 20
+                        "dish_name": "Vennappalu",
+                        "classify_id": 19,
+                        "logo": "",
+                        "menu_type": 8,
+                        "category_type": 1,
+                        "description": "",
+                        "restrictions": "Only for Vegetarians, Mostly for Vegetarians",
+                        // "cuisines":[{
+                        //     "name":"South Indian"
+                        // },{
+                        //     "name":"North Indian"
+                        // }]
                     }
                 ],
             })
