@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-import { Card, CardBody, Col, Row, CardHeader, Table } from 'reactstrap';
+import { Card, CardBody, Col, Row, CardHeader, Table, Input } from 'reactstrap';
 import { Link } from 'react-router-dom'; 
 class List extends Component {
     constructor(props){
         super(props);
         this.state = {
-            keys: []
+            keys: [],
+            deletedIds: [],
+            searchItem: null,
+            selectedOption: "id"
         }
     }
 
@@ -19,6 +22,15 @@ class List extends Component {
                 keys
             })
         }
+    }
+
+    renderSelectOptions = () => {
+        const {
+            keys
+        } = this.state
+        return keys.map((option, index)=> {
+            return <option key={`${index}_${option}_select`}>{option}</option>
+        })
     }
     
     renderTableHeader = () => {
@@ -35,24 +47,54 @@ class List extends Component {
             keys
         } = this.state;
         return keys.map(key =>{
-            return <td>{data[key]}</td>
+            return <td key={key}>{data[key]}</td>
         })
     } 
+    deleteItem = (id) => {
+        const isDelete = window.confirm(`Do you want to delete ${id}`);
+        if(isDelete){
+            alert("Deleted");
+        }
+        this.setState({
+            deletedIds: [...this.state.deletedIds, id]
+        });
+    }
+    renderItem = (data) => {
+        return (
+            <tr key={data.id}>
+                { this.renderTd(data)}
+                <td>
+                    <span style={{
+                        marginRight: 20
+                    }} className="badge badge-success">Update</span>
+                    <span onClick={() => this.deleteItem(data.id)} className="badge badge-danger">Delete</span>
+                </td>
+            </tr>
+        )
+    }
+    isDeleteCheck = (data) => {
+        if(this.state.deletedIds.find(id => data.id)){
+            return null;
+        }
+        else{
+            return this.renderItem(data)
+        }
+    }
     renderBody = (tableData) => {
+        const {
+            searchItem,
+            selectedOption
+        } = this.state;
         if(tableData.length > 0){
             return tableData.map((data)=> {
-                return (
-                    <tr key={data.id}>
-                        { this.renderTd(data)}
-                        <td>
-                            <span style={{
-                                marginRight: 20
-                            }} class="badge badge-success">Update</span>
-                            <span class="badge badge-danger">Delete</span>
-                        </td>
-                    </tr>
-                )
-            })
+                if(searchItem){
+                    if(String(data[selectedOption]).toLowerCase().includes(searchItem.toLowerCase())){
+                        return this.isDeleteCheck(data)
+                    }
+                } else {
+                    return this.isDeleteCheck(data)
+                }
+            })                    
         }
         else {
             return (
@@ -62,6 +104,16 @@ class List extends Component {
                 </tr>
             )
         }
+    }
+    onChangeSearch = (e) => {
+        this.setState({
+            searchItem: e.target.value
+        })
+    }
+    onChangeSearchSelect = (e) => {
+        this.setState({
+            selectedOption: e.target.value
+        })
     }
     render() {
       const { 
@@ -73,14 +125,34 @@ class List extends Component {
             <Col>
                 <div className="create-header">
                     <Col xs={2}>
-                            <Link to={`/${title.toLowerCase()}/create`} class="btn btn-primary btn-block">Create {title}</Link>
+                            <Link to={`/${title.toLowerCase()}/create`} className="btn btn-primary btn-block">Create {title}</Link>
                     </Col>
                 </div>
             </Col>
             <Col xs="12" lg="12">
             <Card>
                 <CardHeader>
-                    { title }
+                    <Row>
+                        <Col xs={6}>
+                            { title }
+                        </Col>
+                        <Col xs={6}>
+                            <Row>
+                                <Col xs={6}>
+                                    <Input onChange={(e) => this.onChangeSearchSelect(e)} type="select" name="select" id="selectSearch">
+                                        {
+                                            this.renderSelectOptions()
+                                        }
+                                    </Input>
+                                </Col>
+                                <Col xs={6}>
+                                    <Input onChange={(e) => this.onChangeSearch(e)} style={{
+                                        float: "right"
+                                    }} type="text" placeholder="Search" />
+                                </Col>
+                            </Row>
+                        </Col>
+                    </Row>
                 </CardHeader>
                 <CardBody>
                     <Table responsive>
